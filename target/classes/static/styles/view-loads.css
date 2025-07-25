@@ -1,0 +1,123 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ecf0f1;
+  padding: 40px;
+  margin: 0;
+}
+
+.loads-container {
+  max-width: 1000px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.create-load-btn {
+  display: block;
+  margin: 0 auto 25px auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create-load-btn:hover {
+  background-color: #219150;
+}
+
+.load-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.load-table th, .load-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.expand-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #34495e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.order-subtable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f8f8f8;
+  margin-top: 10px;
+}
+
+.order-subtable th, .order-subtable td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 🔲 Modal Overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 🔲 Modal Box */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  text-align: center;
+}
+
+/* ❌ Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* 🔒 Hidden Class */
+.hidden {
+  display: none;
+}
+
+

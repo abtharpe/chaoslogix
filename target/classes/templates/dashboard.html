@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ChaosLogix | Dashboard</title>
+  <link rel="stylesheet" th:href="@{/styles/dashboard.css}">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h1>ChaosLogix Dashboard</h1>
+      <p class="subtitle">Your realm of logistical control</p>
+    </header>
+
+    <nav class="main-menu">
+      <a th:href="@{/order-entry}">📦 Create New Order</a>
+      <a th:href="@{/order-active}">📋 View Current Orders</a>
+      <a th:href="@{/view-loads}">🚚 View Current Loads</a>
+      <a href="#">🕓 Order/Load History</a>
+      <a href="#">📈 Reports</a>
+    </nav>
+
+    <footer>
+      <p>Logged in as: <strong>admin</strong></p>
+      <a href="/logout">🔒 Logout</a>
+    </footer>
+  </div>
+</body>
+</html>

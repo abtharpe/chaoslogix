@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Current Loads | ChaosLogix</title>
+  <link rel="stylesheet" th:href="@{/styles/view-loads.css}">
+</head>
+
+<body>
+
+  <div id="createLoadModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn">×</span>
+    <h2>Create New Load</h2>
+    <p>This is a blank modal. More chaos will be summoned soon...</p>
+  </div>
+</div>
+
+    <h1>Current Loads</h1>
+
+    <button class="create-load-btn">+ Create New Load</button>
+
+    <table class="load-table">
+      <thead>
+        <tr>
+          <th>Load ID</th>
+          <th>Destinations</th>
+          <th>Total Pallets</th>
+          <th>Total Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="load-row" onclick="toggleDetails('load-001')">
+          <td>LOAD-001</td>
+          <td>Cape Town → Durban → Port Elizabeth</td>
+          <td>17</td>
+          <td>R36,400.00</td>
+          <td><button class="expand-btn">▼ View Orders</button></td>
+        </tr>
+        <tr id="load-001" class="load-details hidden">
+          <td colspan="5">
+            <table class="order-subtable">
+              <thead>
+                <tr>
+                  <th>Ref #</th>
+                  <th>Principal</th>
+                  <th>Destination</th>
+                  <th>Pallets</th>
+                  <th>Value (R)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ORD-1023</td>
+                  <td>Necronix</td>
+                  <td>Cape Town</td>
+                  <td>5</td>
+                  <td>R10,200.00</td>
+                  <td>Planned</td>
+                </tr>
+                <tr>
+                  <td>ORD-1030</td>
+                  <td>GloomCorp</td>
+                  <td>Durban</td>
+                  <td>6</td>
+                  <td>R13,400.00</td>
+                  <td>Planned</td>
+                </tr>
+                <tr>
+                  <td>ORD-1044</td>
+                  <td>IronEdge</td>
+                  <td>Port Elizabeth</td>
+                  <td>6</td>
+                  <td>R12,800.00</td>
+                  <td>Planned</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <a class="back-btn" th:href="@{/dashboard}">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    function toggleDetails(id) {
+      const row = document.getElementById(id);
+      row.classList.toggle('hidden');
+    }
+
+    function toggleModal() {
+      const modal = document.getElementById("createLoadModal");
+      modal.classList.toggle("hidden");
+    }
+
+  // Add this after the page loads
+    window.onload = function () {
+      const openBtn = document.querySelector('.create-load-btn');
+        if (openBtn) {
+          openBtn.addEventListener('click', toggleModal);
+        }
+
+      const closeBtn = document.querySelector('.close-btn');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', toggleModal);
+        }
+    };
+
+  </script>
+
+</body>
+</html>
