@@ -18,7 +18,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("path")
+    @PostMapping
     public ResponseEntity<OrderEntity> createOrder(@RequestBody OrderEntity order) {
         OrderEntity savedOrder = orderService.saveOrder(order);
         return ResponseEntity.ok(savedOrder);

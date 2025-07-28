@@ -27,23 +27,17 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+   @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            .csrf(csrf -> csrf.disable())  // Disable CSRF for testing POSTs easily
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/styles/**", "/scripts/**", "/images/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll() // Allow every request, everywhere
             )
-            .formLogin(form -> form
-                .loginPage("/login")  // Tell Spring to use YOUR custom form
-                .defaultSuccessUrl("/dashboard", true)
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-            );
+            .formLogin(login -> login.disable()) // Disable form login entirely
+            .httpBasic(basic -> basic.disable()); // Disable basic auth too (optional)
 
         return http.build();
     }
+
 }

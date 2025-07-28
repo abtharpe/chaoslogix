@@ -1,6 +1,7 @@
 package com.chaoslogix.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.persistence.*;
 
@@ -29,7 +30,9 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    private LocalDateTime createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", updatable = false)
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "load_id")
@@ -107,11 +110,11 @@ public class OrderEntity {
         this.orderStatus = orderStatus;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -121,6 +124,11 @@ public class OrderEntity {
 
     public void setLoad(LoadEntity load) {
         this.load = load;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+    createdAt = new Date();
     }
 
 }
