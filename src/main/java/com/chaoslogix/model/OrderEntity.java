@@ -3,7 +3,10 @@ package com.chaoslogix.model;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints;
 
 @Entity
 public class OrderEntity {
@@ -13,6 +16,7 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     private String reference;
     private String principalName;
 
