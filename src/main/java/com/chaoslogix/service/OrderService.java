@@ -18,8 +18,13 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public List<OrderEntity> orderList() {
+    public List<OrderEntity> getAllOrders() {
         return orderRepository.findAll();
+    }
+
+    public OrderEntity getOrderByReference(String orderReference) {
+        return orderRepository.findByReference(orderReference)
+            .orElseThrow(()-> new RuntimeException("Order, " + orderReference + ", not found"));
     }
     
 }

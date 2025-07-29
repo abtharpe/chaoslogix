@@ -12,6 +12,7 @@ import com.chaoslogix.service.OrderService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -30,9 +31,15 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderEntity>> getOrders() {
-        List<OrderEntity> orders = orderService.orderList();
+    public ResponseEntity<List<OrderEntity>> getAllOrders() {
+        List<OrderEntity> orders = orderService.getAllOrders();
         return ResponseEntity.ok(orders);
+    }
+    
+    @GetMapping("/{reference}")
+    public ResponseEntity<OrderEntity> getOrderByReference(@PathVariable String reference) {
+        OrderEntity order = orderService.getOrderByReference(reference);
+        return ResponseEntity.ok(order);
     }
     
 
