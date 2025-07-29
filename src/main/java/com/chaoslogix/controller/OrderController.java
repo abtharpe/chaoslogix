@@ -41,6 +41,5 @@ public class OrderController {
         OrderEntity order = orderService.getOrderByReference(reference);
         return ResponseEntity.ok(order);
     }
-    
 
 }

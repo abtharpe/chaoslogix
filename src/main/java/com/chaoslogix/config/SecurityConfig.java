@@ -27,15 +27,31 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-   @Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())  // Disable CSRF for testing POSTs easily
+            .csrf(csrf -> csrf.disable()) // Disable CSRF for testing
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // Allow every request, everywhere
+                .requestMatchers(
+                    "/login",
+                    "/styles/**",
+                    "/scripts/**",
+                    "/images/**",
+                    "/orders/**",          // allow POST/GET from Postman
+                    "/h2-console/**"
+                ).permitAll()
+                .anyRequest().authenticated() // everything else needs auth
             )
-            .formLogin(login -> login.disable()) // Disable form login entirely
-            .httpBasic(basic -> basic.disable()); // Disable basic auth too (optional)
+            .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/dashboard", true)
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+            )
+            .headers(headers -> headers.frameOptions().disable()); // allow H2 console
 
         return http.build();
     }
