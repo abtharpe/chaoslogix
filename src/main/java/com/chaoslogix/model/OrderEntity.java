@@ -6,7 +6,6 @@ import java.util.Date;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints;
 
 @Entity
 public class OrderEntity {
@@ -16,7 +15,6 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
     private String reference;
     private String principalName;
 
@@ -41,6 +39,16 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "load_id")
     private LoadEntity load;
+
+    private String orderNotes;
+
+    public String getNotes() {
+        return orderNotes;
+    }
+
+    public void setNotes(String notes) {
+        this.orderNotes = notes;
+    }
 
     public long getId() {
         return id;

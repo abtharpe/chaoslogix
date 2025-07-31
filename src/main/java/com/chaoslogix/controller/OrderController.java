@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +13,13 @@ import com.chaoslogix.service.OrderService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-@RestController
+@Controller
 @RequestMapping("/orders")
 public class OrderController {
     
@@ -25,9 +27,9 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderEntity> createOrder(@RequestBody OrderEntity order) {
+    public String createOrder(@ModelAttribute OrderEntity order) {
         OrderEntity savedOrder = orderService.saveOrder(order);
-        return ResponseEntity.ok(savedOrder);
+        return "redirect:/order-active";
     }
 
     @GetMapping
