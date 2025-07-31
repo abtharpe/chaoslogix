@@ -16,7 +16,7 @@ public class OrderEntity {
     private long id;
 
     private String reference;
-    private String principalName;
+    private String principal;
 
     @Enumerated(EnumType.STRING)
     private OrderType orderType;
@@ -30,7 +30,7 @@ public class OrderEntity {
     private double orderValue;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderStatus orderStatus = OrderStatus.UNSCHEDULED;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", updatable = false)
@@ -42,11 +42,11 @@ public class OrderEntity {
 
     private String orderNotes;
 
-    public String getNotes() {
+    public String getOrderNotes() {
         return orderNotes;
     }
 
-    public void setNotes(String notes) {
+    public void setOrderNotes(String notes) {
         this.orderNotes = notes;
     }
 
@@ -66,12 +66,12 @@ public class OrderEntity {
         this.reference = reference;
     }
 
-    public String getPrincipalName() {
-        return principalName;
+    public String getPrincipal() {
+        return principal;
     }
 
-    public void setPrincipalName(String principalName) {
-        this.principalName = principalName;
+    public void setPrincipal(String principal) {
+        this.principal = principal;
     }
 
     public OrderType getOrderType() {

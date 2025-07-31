@@ -12,33 +12,28 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Ref #</th>
+                        <th>Reference</th>
                         <th>Principal</th>
+                        <th>Order Type</th>
                         <th>Destination</th>
                         <th>Pallets</th>
                         <th>Value (R)</th>
                         <th>Status</th>
                         <th>Notes</th>
+                        <th>Created</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>ORD-1001</td>
-                        <td>GloomCorp</td>
-                        <td>Durban</td>
-                        <td>5</td>
-                        <td>R9,450.00</td>
-                        <td>Pending</td>
-                        <td>Urgent delivery</td>
-                    </tr>
-                    <tr>
-                        <td>ORD-1002</td>
-                        <td>Necronix</td>
-                        <td>Cape Town</td>
-                        <td>3</td>
-                        <td>R5,600.00</td>
-                        <td>Planned</td>
-                        <td></td>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.reference}"></td>
+                        <td th:text="${order.principal}"></td>
+                        <td th:text="${order.orderType}"></td>
+                        <td th:text="${order.destination}"></td>
+                        <td th:text="${order.palletCount}"></td>
+                        <td th:text="${order.orderValue}"></td>
+                        <td th:text="${order.orderStatus}"></td>
+                        <td th:text="${order.orderNotes}"></td>
+                        <td th:text="${#dates.format(order.createdAt, 'yyyy-MM-dd')}"></td>
                     </tr>
                 </tbody>
             </table>

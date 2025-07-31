@@ -2,9 +2,9 @@ package com.chaoslogix.model;
 
 public enum OrderStatus {
 
-    PENDING,
     UNSCHEDULED,
-    SCHEDULED, 
+    SCHEDULED,
+    DISPATCHED, 
     CANCELED,
     CROSS_DOCK
 
