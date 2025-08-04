@@ -30,20 +30,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            .csrf(csrf -> csrf.disable()) // Disable CSRF for testing
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/styles/**", "/scripts/**", "/images/**").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers(
+                    "/login",
+                    "/styles/**",
+                    "/scripts/**",
+                    "/images/**",
+                    "/orders/**",          // allow POST/GET from Postman
+                    "/h2-console/**"
+                ).permitAll()
+                .anyRequest().authenticated() // everything else needs auth
             )
             .formLogin(form -> form
-                .loginPage("/login")  // Tell Spring to use YOUR custom form
+                .loginPage("/login")
                 .defaultSuccessUrl("/dashboard", true)
                 .permitAll()
             )
             .logout(logout -> logout
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
-            );
+            )
+            .headers(headers -> headers.frameOptions().disable()); // allow H2 console
 
         return http.build();
     }
+
 }
